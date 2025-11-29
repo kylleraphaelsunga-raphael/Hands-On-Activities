@@ -1,19 +1,22 @@
 <!-- 
-TYPE JUGGLING | VARIABLES AND ARRAY
 Name: Sunga, Kylle Raphael Y.
 Block: WD 203
 -->
 
-<?php
-$prices = [
-    'Adidas Samba'       => 3500,
-    'Adidas Gazelle'     => '3800',
-    'Nike Air Force 1'   => 4500,
-    'Nike Dunk Low'      => '4700',
-    'Puma Suede'         => 3200,
-    'Puma Speedcat'      => '3300',
-    'NB 550'             => 4000,
-    'NB 574'             => '4200'
+<?php //TYPE JUGGLING & ARRAY
+$shoes = [
+    'Adidas' => [
+        'Adidas Samba' => 6800,
+        'Adidas Gazelle' => '6000' ],
+    'Nike' => [
+        'Nike Air Force 1' => 5895,
+        'Nike Dunk Low' => '5895' ],
+    'Puma' => [
+        'Puma Palermo' => 6200,
+        'Puma Speedcat' => '7100' ],
+    'New Balance' => [
+        'New Balance 550' => 6295,
+        'New Balance 1906r' => '9795' ]
 ];
 ?>
 
@@ -23,39 +26,44 @@ $prices = [
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Shoe Prices</title>
-    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/assign_styles.css">
 </head>
 <body>
 
     <?php include 'includes/assign_header.php'; ?>
 
-    <h1 class = "title">Shoe Prices</h1>
+    <div class="parent">
+        <div class="div1">
+            <img src="img/shoes.jpg" alt="Left Side Shoe Image">
+        </div>
 
-    <h2>Adidas</h2>
-    <ul>
-        <li>Adidas Samba: ₱<?= $prices['Adidas Samba'] ?></li>
-        <li>Adidas Gazelle: ₱<?= $prices['Adidas Gazelle'] ?></li>
-    </ul>
+        <!-- FOREACH LOOP -->
+        <div class="div2">
+            <h1 class="title">Shoe Prices</h1>
 
-    <h2>Nike</h2>
-    <ul>
-        <li>Nike Air Force 1: ₱<?= $prices['Nike Air Force 1'] ?></li>
-        <li>Nike Dunk Low: ₱<?= $prices['Nike Dunk Low'] ?></li>
-    </ul>
+            <?php foreach($shoes as $brand => $brandShoes) {  ?>
+                <h2><?= $brand ?></h2>
+                <table>
+                    <tr>
+                        <th>Shoe</th>
+                        <th>Price (₱)</th>
+                    </tr>
+                    <?php foreach($brandShoes as $shoe => $price) { ?>
+                        <tr>
+                            <td><?= $shoe ?></td>
+                            <td><?= $price ?></td>
+                        </tr>
+                    <?php } ?>
+                </table>
+            <?php } ?>
+        </div>
 
-    <h2>Puma</h2>
-    <ul>
-        <li>Puma Suede: ₱<?= $prices['Puma Suede'] ?></li>
-        <li>Puma Speedcat: ₱<?= $prices['Puma Speedcat'] ?></li>
-    </ul>
+        <div class="div3">
+            <img src="img/shoes.jpg" alt="Right Side Shoe Image">
+        </div>
+    </div>
 
-    <h2>New Balance</h2>
-    <ul>
-        <li>NB 530: ₱<?= $prices['NB 550'] ?></li>
-        <li>NB 1906r: ₱<?= $prices['NB 574'] ?></li>
-    </ul>
-
-    <?php include 'includes/assign_ooter.php'; ?>
+    <?php include 'includes/assign_footer.php'; ?>
 
 </body>
 </html>
