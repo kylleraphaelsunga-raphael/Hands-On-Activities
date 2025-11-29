@@ -21,7 +21,7 @@ $shoes = [
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Shoe Store</title>
+    <title>Raphael's KicksLab Options</title>
     <link rel="stylesheet" href="css/assign_styles.css">
 </head>
 <body>
@@ -70,3 +70,4 @@ $shoes = [
 
 </body>
 </html>
+
