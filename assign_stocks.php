@@ -31,7 +31,7 @@ $brands = ["Adidas", "Nike", "Puma", "New Balance"];
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Shoe Stocks (Beginner Version)</title>
+    <title>Raphael's KicksLab Stocks</title>
     <link rel="stylesheet" href="css/assign_styles.css">
 </head>
 <body>
@@ -117,3 +117,4 @@ $brands = ["Adidas", "Nike", "Puma", "New Balance"];
 
 </body>
 </html>
+
