@@ -17,7 +17,7 @@ $best_sellers = [
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Raphael's Shoe Store</title>
+    <title>Raphael's KicksLab</title>
     <link rel="stylesheet" href="css/assign_styles.css">
 </head>
 <body>
@@ -30,7 +30,7 @@ $best_sellers = [
         </div>
 
         <div class="div2">
-            <h1>Welcome to Raphael's Shoe Store!</h1>
+            <h1>Welcome to Raphael's KicksLab!</h1>
             <p>We provide a wide variety of high-quality sneakers for style, comfort, and performance. Find your perfect pair today!</p>
 
             <h2>Our Brands</h2>
@@ -59,3 +59,4 @@ $best_sellers = [
 
 </body>
 </html>
+
