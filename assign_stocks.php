@@ -1,29 +1,36 @@
-<!-- 
-Name: Sunga, Kylle Raphael Y.
-Block: WD 203
--->
+<?php
+// 1: STRICT TYPES
+declare(strict_types = 1);
 
-<?php  
-// STOCKS
-$adidas_stock = 20;
-$nike_stock = 15;
-$puma_stock = 10;
-$nb_stock = 12;
+// 2: MULTIDIMENSIONAL ARRAY
+$products = [
+    "Adida Samba" => ["price" => 6800.00, "stock" => 9],
+    "Adida Gazelle" => ["price" => 6000.00, "stock" => 13],
+    "Nike Air Force 1" => ["price" => 5895.00, "stock" => 15],
+    "Nike Dunk Low" => ["price" => 5895.00, "stock" => 9],
+    "Puma Palermo" => ["price" => 6200.00, "stock" => 2],
+    "Puma Speedcat" => ["price" => 7100.00, "stock" => 10],
+    "New Balance 550" => ["price" => 6295.00, "stock" => 16],
+    "New Balance 1906r" => ["price" => 9795.00, "stock" => 18]
+];
 
-// SOLD
-$adidas_sold = 5;
-$nike_sold = 3;
-$puma_sold = 2;
-$nb_sold = 4;
+// 3: GLOBAL VARIABLE
+$rate = 12; // TAXRATE
 
-// EXPRESSIONS AND OPERATORS
-$adidas_remain = $adidas_stock - $adidas_sold;
-$nike_remain   = $nike_stock - $nike_sold;
-$puma_remain   = $puma_stock - $puma_sold;
-$nb_remain     = $nb_stock - $nb_sold;
+// 4&5: GET ORDER : TERNARY OPERATOR
+function get_reorder_message(int $stock): string {
+    return ($stock < 10) ? "Yes" : "No";
+}
 
-// ARRAY
-$brands = ["Adidas", "Nike", "Puma", "New Balance"];
+// 6&7: TOTAL VALUE : RETURN PRICE * QUANTITY
+function get_total_value(float $price, int $quantity): float {
+    return $price * $quantity;
+}
+
+// 8&9: TAX DUE : RETURN TOTAL TAX
+function get_tax_due(float $price, int $quantity, int $tax = 0): float {
+    return ($price * $quantity) * ($tax / 100);
+}
 ?>
 
 <!DOCTYPE html>
@@ -36,85 +43,47 @@ $brands = ["Adidas", "Nike", "Puma", "New Balance"];
 </head>
 <body>
 
-<?php include 'includes/assign_header.php'; ?>
+    <?php include 'includes/assign_header.php'; ?>
 
-<div class="parent">
+    <div class="parent">
 
-    <div class="div1">
-        <img src="img/shoes.jpg" alt="Left Shoe Image">
+        <div class="div1">
+            <img src="img/shoes.jpg" alt="Left Shoe Image">
+        </div>
+
+        <div class="div2">
+            <h1>Shoe Inventory Summary</h1>
+
+            <table>
+                <tr>
+                    <th>Product Name</th>
+                    <th>Stock Level</th>
+                    <th>Reorder?</th>
+                    <th>Total Stock Value</th>
+                    <th>Tax Due</th>
+                </tr>
+
+                <!-- FOREACH LOOP -->
+                <?php foreach ($products as $product_name => $data) { ?>
+
+                <tr>
+                    <td><?php echo $product_name; ?></td>
+                    <td><?php echo $data["stock"]; ?></td>
+                    <td><?php echo get_reorder_message($data["stock"]); ?></td>
+                    <td><?php echo get_total_value($data["price"], $data["stock"]); ?></td>
+                    <td><?php echo get_tax_due($data["price"], $data["stock"], $rate); ?></td>
+                </tr>
+
+                <?php } ?>
+            </table>
+        </div>
+
+        <div class="div3">
+            <img src="img/shoes.jpg" alt="Right Shoe Image">
+        </div>
     </div>
 
-    <div class="div2">
-
-        <h1>Shoe Stocks</h1>
-
-        <table>
-            <tr>
-                <th>Brand</th>
-                <th>Remaining Stock</th>
-                <th>Status</th>
-                <th>Available Colors</th>
-            </tr>
-
-            <?php  
-            // FOREACH LOOP
-            foreach ($brands as $brand) {
-
-                // IF ELSE IF 
-                if ($brand == "Adidas") {
-                    $remain = $adidas_remain;
-                    $color  = "Black / White";
-                }
-                elseif ($brand == "Nike") {
-                    $remain = $nike_remain;
-                    $color  = "Black";
-                }
-                elseif ($brand == "Puma") {
-                    $remain = $puma_remain;
-                    $color  = "Black / White";
-                }
-                else {
-                    $remain = $nb_remain;
-                    $color  = "Gray / White";
-                }
-
-                // STOCK STATUS
-                if ($remain >= 15) {
-                    $status = "Plenty in stock";
-                } 
-                elseif ($remain >= 8) {
-                    $status = "Moderate stock";
-                } 
-                else {
-                    $status = "Low stock";
-                }
-            ?>
-
-            <tr>
-                <td><?= $brand ?></td>
-                <td><?= $remain ?></td>
-                <td><?= $status ?></td>
-                <td><?= $color ?></td>
-            </tr>
-
-            <?php } ?>
-        </table>
-
-        <?php  
-        $total = $adidas_remain + $nike_remain + $puma_remain + $nb_remain;
-        echo "<p>Total remaining stock: $total</p>";
-        ?>
-
-    </div>
-
-    <div class="div3">
-        <img src="img/shoes.jpg" alt="Right Shoe Image">
-    </div>
-
-</div>
-
-<?php include 'includes/assign_footer.php'; ?>
+    <?php include 'includes/assign_footer.php'; ?>
 
 </body>
 </html>
-
